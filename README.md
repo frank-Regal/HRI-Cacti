@@ -28,8 +28,8 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
      cacti-shell
      ```
 
-### Install Platform Packages
-#### XR Devices
+### Clone Packages
+#### HRI-Cacti XR
 > Note: Currently only tested and configured for use with a HoloLens 2
   1. Clone repo and sub repos (on your local machine / **not** in the docker terminal)
        ```shell
