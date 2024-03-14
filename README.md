@@ -36,11 +36,11 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
        cd HRI-Cacti
        ```
        ```shell
-       mkdir -p hri_cacti/ws_dev/src && \
-       cd hri_cacti/ws_dev/src
+       mkdir -p proj/ws_dev/src && \
+         cd proj/ws_dev/src
        ```
        ```shell
        git clone https://github.com/frank-Regal/hri_cacti_xr && \
-       cd hri_cacti_xr && \
-       vcs import < .repos
+         cd hri_cacti_xr && \
+         vcs import < .repos
        ```
