@@ -1,38 +1,43 @@
-start-docker(){
+cacti-start(){
     #add xhost permissions for docker to use display
     xhost +local:docker
     echo "added docker xhost permissions"
-    docker compose -f $HRIC_DIRECTORY/Docker/docker-compose.yaml up -d
+    docker compose -f $HRI_CACTI_GIT_DIR/Docker/docker-compose.yaml up -d
 }
 
-stop-docker(){
+cacti-stop(){
     # stop the container and remove it
-    docker compose -f $HRIC_DIRECTORY/Docker/docker-compose.yaml down
+    docker compose -f $HRI_CACTI_GIT_DIR/Docker/docker-compose.yaml down
 }
 
-shell-docker() {
+cacti-rm(){
+    # remove the docker image
+    docker image rm -f hri_cacti_i
+}
+
+cacti-shell() {
     # open a shell in the container
     docker exec -ti hri_cacti_c bash -l
 }
 
-build-docker() {
+cacti-build() {
     # if the container is running, stop it
-    if [ "$(docker ps -q -f name=rosd_c)" ]; then
-        echo "stopping container rosd_c..."
-        docker compose -f $HRIC_DIRECTORY/Docker/docker-compose.yaml down
+    if [ "$(docker ps -q -f name=hri_cacti_c)" ]; then
+        echo "stopping container hri_cacti_c..."
+        docker compose -f $HRI_CACTI_GIT_DIR/Docker/docker-compose.yaml down
     fi
     # build the container from the docker-compose file
-    docker compose -f $HRIC_DIRECTORY/Docker/docker-compose.yaml build
+    docker compose -f $HRI_CACTI_GIT_DIR/Docker/docker-compose.yaml build
 }
 
-dir-docker() {
+cacti-dir() {
     # Set the directory of the docker_workshop repo on the host
 	# Usage: rosd-dir path_to_rosd_docker_dir
 	# Alternatively, add it to your .bashrc for convenience
-    export HRIC_DIRECTORY=$1
+    export HRI_CACTI_GIT_DIR=$1
 }
 
-log-docker() {
+cacti-log() {
     # view the logs of the picogk container
     docker logs rosd_c
 }

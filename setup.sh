@@ -1,13 +1,14 @@
-#!/bin/bash
+# Set path to current github directory
+CUR_DIR=$(pwd)
 
-# Set path to github directory
-HRIC_DIRECTORY=$(pwd)
+# Setup username and id
+USERNAME=$(whoami)
+CURR_ID=$(id -u)
+
+# Write to bashrc
 echo " " >> ~/.bashrc
 echo "# HRI Cacti Docker Directory" >> ~/.bashrc
-echo "export hricacti_DIRECTORY=$HRIC_DIRECTORY" >> ~/.bashrc
-
-# Source docker utility functionssourc
-source $HRIC_DIRECTORY/Docker/bash_utils
-
-# source bash rc
-. ~/.bashrc
+echo "export HRI_CACTI_GIT_DIR=$CUR_DIR" >> ~/.bashrc
+echo "source $CUR_DIR/Docker/bash_utils" >> ~/.bashrc
+echo "export UNAME=$USERNAME" >> ~/.bashrc
+echo "export UID_GID=$CURR_ID" >> ~/.bashrc

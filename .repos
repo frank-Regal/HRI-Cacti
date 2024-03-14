@@ -1,0 +1,5 @@
+repositories:
+  hri_cacti/ws_dev/src/hri_cacti_xr:
+    type: git
+    url: git@github.com:frank-Regal/hri_cacti_xr.git
+    version: main

@@ -27,7 +27,7 @@ services:
       - apparmor:unconfined
     volumes:
       # mount host directories to the container for persistent storage
-      - ../project:/root/project
+      - ../hri_cacti:/root/hri_cacti
       # mount the X11 socket to enable graphics display
       - /tmp/.X11-unix:/tmp/.X11-unix
       # required for non-nvidia users, comment out for nvidia users
@@ -44,5 +44,5 @@ services:
     #   - /dev/hokuyo:/dev/hokuyo
     #   - /dev/input/js0:/dev/input/js0
     # run the entrypoint script
-    entrypoint: /entrypoint.sh
+    entrypoint: /entrypoint.sh -u "$UID_GID" -n "$UNAME"
     
