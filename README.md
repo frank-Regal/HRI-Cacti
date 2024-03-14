@@ -36,9 +36,7 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
        cd HRI-Cacti
        ```
        ```shell
-       mkdir -p hri_cacti/ws_dev/src
-       ```
-       ```shell
+       mkdir -p hri_cacti/ws_dev/src && \
        cd hri_cacti/ws_dev/src
        ```
        ```shell
