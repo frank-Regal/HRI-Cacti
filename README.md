@@ -11,9 +11,9 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
   1. Clone repo & setup environment variables
      ```shell
      git clone https://github.com/frank-Regal/HRI-Cacti && \
-     cd HRI-Cacti && \
-     chmod +x setup.sh && \
-     ./setup.sh
+       cd HRI-Cacti && \
+       chmod +x setup.sh && \
+       ./setup.sh
      ```
   2. Build Docker Image
      ```shell
@@ -43,4 +43,10 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
        git clone https://github.com/frank-Regal/hri_cacti_xr && \
          cd hri_cacti_xr && \
          vcs import < .repos
+       ```
+  2. Build package
+       ```shell
+       pip install $KP_PY_PKG && \
+         cd proj/ws_dev/ && \
+         catkin build
        ```
