@@ -7,6 +7,7 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
 ## 1. Setup & Installation
 
 ### Install Dependencies
+[NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.14.5/install-guide.html)
 #### Docker Setup (Recommended)
   1. Clone repo & setup environment variables
      ```shell
