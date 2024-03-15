@@ -27,7 +27,7 @@ services:
       - apparmor:unconfined
     volumes:
       # mount host directories to the container for persistent storage
-      - ../hri_cacti:/root/hri_cacti
+      - ../proj:/root/proj
       # mount the X11 socket to enable graphics display
       - /tmp/.X11-unix:/tmp/.X11-unix
       # required for non-nvidia users, comment out for nvidia users

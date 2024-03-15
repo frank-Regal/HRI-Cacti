@@ -4,6 +4,7 @@ SHELL ["/bin/bash", "-c"]
 
 # set the ros version
 ENV ROS_DISTRO noetic
+ENV PROJ_HUB proj
 
 # install some useful packages and upgrade existing ones
 RUN apt update && apt upgrade -y \
@@ -53,9 +54,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
 
 RUN rosdep update
 
+# install pip packages
+WORKDIR /usr/src/app
+COPY ./requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+
 # Setup environment
 ENV BASE_WS=/root/ws_base
-ENV DEV_WS=/root/hri_cacti/ws_dev
+ENV DEV_WS=/root/${PROJ_HUB}/ws_dev
 
 # setup
 RUN mkdir -p ${BASE_WS}/src
@@ -89,16 +96,12 @@ RUN source devel/setup.bash \
 RUN source devel/setup.bash \
     && catkin build
 
-# # setup mount location directory and catkin workspace
-# WORKDIR ${DEV_WS}
-# RUN mkdir src && catkin config --extend ${BASE_WS}/devel && catkin build
+WORKDIR /root
 
 # setup .bashrc
 SHELL ["/bin/bash", "-l", "-c"]
-RUN echo -e "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
-
-# setup .bashrc
-SHELL ["/bin/bash", "-l", "-c"]
+RUN echo -e "source /opt/ros/${ROS_DISTRO}/setup.bash\n\
+    source ${BASE_WS}/devel/setup.bash" >> ~/.bashrc
 
 # copy the entrypoint into the image
 COPY ./entrypoint.sh /entrypoint.sh
