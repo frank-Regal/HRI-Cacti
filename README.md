@@ -58,19 +58,17 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
          cd hri_cacti_xr && \
          vcs import < .repos
        ```
-  3. Open Docker shell, build package, source workspace in Docker container
+  3. Open Docker shell
        ```shell
        cacti-shell
        ```
-  4. Build custom python package and catkin workspace
-       `🐋 From Docker Shell`
+  4. `🐋 From Docker Shell` Build custom python package and catkin workspace
        ```shell
        pip install $WS_PY_PKG && \
          cd /project/ws_dev/ && \
          catkin build
        ```
-  5. Source catkin workspace
-       `🐋 From Docker Shell`
+  5. `🐋 From Docker Shell` Source catkin workspace
        ```shell
        sws #preconfigured alias
        ```
