@@ -2,55 +2,67 @@
 Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) project hub.
 
 ## Table of Contents
-   * [1. Setup & Installation](#1-setup-&-installation)
+   * [1. Install Dependencies](#1-install-dependencies)
 
-## 1. Setup & Installation
+## 1. Install Dependencies
 
-### Install Dependencies
-[NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.14.5/install-guide.html)
-#### Docker Setup (Recommended)
-  1. Clone repo & setup environment variables
+### via Docker
+  1. Install prerequisites
+      <details>
+      <summary><a href="https://github.com/dirk-thomas/vcstool">vcstool</a></summary>
+      <br>
+    
+      ```shell
+      sudo apt install python3-vcstool
+      ```
+      </details>
+      <details>
+      <summary><a href="https://docs.docker.com/engine/install/ubuntu/">Docker</a></summary>
+      https://docs.docker.com/engine/install/ubuntu/
+      </details>
+      <details>
+      <summary><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.14.5/install-guide.html">NVIDIA Container Toolkit</a></summary>
+      https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.14.5/install-guide.html
+      </details>
+      <details>
+      <summary><a href="https://docs.docker.com/engine/install/linux-postinstall/">Docker: Post Installation Steps</a></summary>
+      https://docs.docker.com/engine/install/linux-postinstall/
+      </details>
+  3. Clone repo & setup environment variables
      ```shell
      git clone https://github.com/frank-Regal/HRI-Cacti && \
        cd HRI-Cacti && \
        chmod +x setup.sh && \
        ./setup.sh
      ```
-  2. Build Docker Image
+  4. Build Docker Image
      ```shell
      cacti-build
      ```
-  3. Start Container
+  5. Start Container
      ```shell
      cacti-start
      ```
 
-### Clone Packages
-#### HRI-Cacti XR
+## 2. Getting Started
+### Clone HRI-Cacti for XR
 > Note: Currently only tested and configured for use with a HoloLens 2
-  1. Clone repo and sub repos (on your local machine / **not** in the docker terminal)
+  1. From `HRI-Cacti/` directory, create the following workspace directories
        ```shell
-       # -- local --
-       cd HRI-Cacti
+       mkdir -p proj/ws_dev/src && cd proj/ws_dev/src
        ```
+  2. Clone [hri_cacti_xr](https://github.com/frank-Regal/hri_cacti_xr) repo and import submodules.
        ```shell
-       # -- local --
-       mkdir -p proj/ws_dev/src && \
-         cd proj/ws_dev/src
-       ```
-       ```shell
-       # -- local --
        git clone https://github.com/frank-Regal/hri_cacti_xr && \
          cd hri_cacti_xr && \
          vcs import < .repos
        ```
-  2. Build package
+  2. Build package in *Docker* container
        ```shell
-       # -- local --
        cacti-shell
        ```
+       `🐋 Docker`
        ```shell
-       # -- docker --
        pip install $KP_PY_PKG && \
          cd proj/ws_dev/ && \
          catkin build
