@@ -50,7 +50,7 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
 > Note: Currently only tested and configured for use with a HoloLens 2
   1. From `HRI-Cacti/` directory, create the following workspace directories
        ```shell
-       mkdir -p proj/ws_dev/src && cd proj/ws_dev/src
+       mkdir -p project/ws_dev/src && cd project/ws_dev/src
        ```
   2. Clone [hri_cacti_xr](https://github.com/frank-Regal/hri_cacti_xr) repo and import submodules.
        ```shell
@@ -58,14 +58,21 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
          cd hri_cacti_xr && \
          vcs import < .repos
        ```
-  2. Open Docker shell and build package in Docker container
+  3. Open Docker shell, build package, source workspace in Docker container
        ```shell
        cacti-shell
        ```
-       `🐋 Inside Docker Shell`
+  4. Build custom python package and catkin workspace
+       `🐋 From Docker Shell`
        ```shell
-       pip install $KP_PY_PKG && \
-         cd proj/ws_dev/ && \
+       pip install $WS_PY_PKG && \
+         cd /project/ws_dev/ && \
          catkin build
        ```
+  5. Source catkin workspace
+       `🐋 From Docker Shell`
+       ```shell
+       sws #preconfigured alias
+       ```
+       
         
