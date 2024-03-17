@@ -2,11 +2,11 @@
 Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) project hub.
 
 ## Table of Contents
-   * [1. Install Dependencies](#1-install-dependencies)
+   * [1. Install Dependencies via Docker](#1-install-dependencies-via-docker)
+   * [2. Install HRI-Cacti Packages]()
 
-## 1. Install Dependencies
-
-### via Docker
+## 1. Install Dependencies via Docker
+> **Note**: This docker installation is the recommended way to run and contribute to this project. The installation instructions below will setup a Docker container on your machine mounted to the local `HRI-Cacti/project/` directory from this repo on your local machine after cloning this repo. The `/project/` directory in the Docker container after setup will be mounted (synced) to the `HRI-Cacti/project/` directory on your local machine. The intended work flow is to develop in the local `HRI-Cacti/project/` directory on your local machine and then build and run the packages located in `/project/` from a Docker container shell.
   1. Install prerequisites
       <details>
       <summary><a href="https://github.com/dirk-thomas/vcstool">vcstool</a></summary>
@@ -36,10 +36,11 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
        ./setup.sh
      ```
   4. Build Docker Image
+     >**Note**: `HRI-Cacti/setup.sh` script should have sourced the `HRI-Cacti/Docker/bash-utils` file to run the following shell cmds. If they were not correctly setup, see `HRI-Cacti/Docker/bash-utils` for a list of the cmds to run.
      ```shell
      cacti-build
      ```
-  5. Start Container
+  6. Start Container
      ```shell
      cacti-start
      ```
@@ -57,11 +58,11 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
          cd hri_cacti_xr && \
          vcs import < .repos
        ```
-  2. Build package in *Docker* container
+  2. Open Docker shell and build package in Docker container
        ```shell
        cacti-shell
        ```
-       `🐋 Docker`
+       `🐋 Inside Docker Shell`
        ```shell
        pip install $KP_PY_PKG && \
          cd proj/ws_dev/ && \
