@@ -46,8 +46,8 @@ Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) pro
      ```
 
 ## 2. Getting Started
-### Clone HRI-Cacti for XR
-> Note: Currently only tested and configured for use with a HoloLens 2
+### Setup [hri_cacti_xr](https://github.com/frank-Regal/hri_cacti_xr)
+>**Note**: Follow the steps below only if you setup the docker environment in [1. Install Dependencies via Docker](#1-install-dependencies-via-docker). For non-docker setup, see the [project repo](https://github.com/frank-Regal/hri_cacti_xr) for local install.
   1. From `HRI-Cacti/` directory, create the following workspace directories
        ```shell
        mkdir -p project/ws_dev/src && cd project/ws_dev/src
