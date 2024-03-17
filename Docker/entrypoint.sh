@@ -37,7 +37,7 @@ else
   cp /root/.bashrc /home/$uname/.bashrc 
   cp /root/.profile /home/$uname/.profile
   # create a symlink to the projects volume
-  cd /home/$uname && ln -s /root/projects projects
+  cd /home/$uname && ln -s /project project
   chown -R $uname /home/$uname
 fi
 

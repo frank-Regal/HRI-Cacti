@@ -4,7 +4,7 @@ SHELL ["/bin/bash", "-c"]
 
 # set the ros version
 ENV ROS_DISTRO noetic
-ENV PROJ_HUB proj
+ENV PROJ_HUB project
 
 # install some useful packages and upgrade existing ones
 RUN apt update && apt upgrade -y \
@@ -60,9 +60,12 @@ COPY ./requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
+# install torch specific packages
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
 # Setup environment
-ENV BASE_WS=/root/ws_base
-ENV DEV_WS=/root/${PROJ_HUB}/ws_dev
+ENV BASE_WS=/deps/ws_base
+ENV DEV_WS=/${PROJ_HUB}/ws_dev
 
 # setup
 RUN mkdir -p ${BASE_WS}/src
@@ -70,7 +73,6 @@ RUN mkdir -p ${BASE_WS}/src
 # Change the working directory
 WORKDIR ${BASE_WS}/src
 
-# // Clone project dependencies from github
 # clone audio common
 RUN git clone https://github.com/ros-drivers/audio_common.git
 
@@ -96,12 +98,15 @@ RUN source devel/setup.bash \
 RUN source devel/setup.bash \
     && catkin build
 
-WORKDIR /root
+WORKDIR /${PROJ_HUB}
 
-# setup .bashrc
+# setup .bashrc to correctly source workspace and setup user aliases
 SHELL ["/bin/bash", "-l", "-c"]
 RUN echo -e "source /opt/ros/${ROS_DISTRO}/setup.bash\n\
-    source ${BASE_WS}/devel/setup.bash" >> ~/.bashrc
+    source ${BASE_WS}/devel/setup.bash\n\
+    alias inpypkg='pip install $WS_PY_PKG'\n\
+    alias cdcacti='cd ${DEV_WS}'\n\
+    alias sws='source ${DEV_WS}/devel/setup.bash'" >> ~/.bashrc
 
 # copy the entrypoint into the image
 COPY ./entrypoint.sh /entrypoint.sh
