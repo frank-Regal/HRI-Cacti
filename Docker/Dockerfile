@@ -77,7 +77,7 @@ WORKDIR ${BASE_WS}/src
 RUN git clone https://github.com/ros-drivers/audio_common.git
 
 # clone robofleet client 
-RUN git clone https://github.com/UTNuclearRobotics/robofleet_client.git -b noetic-main
+RUN git clone https://github.com/UTNuclearRobotics/robofleet_client.git -b noetic-devel
 WORKDIR ${BASE_WS}/src/robofleet_client
 RUN git submodule init
 RUN git submodule update
