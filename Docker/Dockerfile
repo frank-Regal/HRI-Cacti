@@ -102,11 +102,13 @@ WORKDIR /${PROJ_HUB}
 
 # setup .bashrc to correctly source workspace and setup user aliases
 SHELL ["/bin/bash", "-l", "-c"]
+ENV TERM=xterm-256color
 RUN echo -e "source /opt/ros/${ROS_DISTRO}/setup.bash\n\
     source ${BASE_WS}/devel/setup.bash\n\
     alias inpypkg='pip install $WS_PY_PKG'\n\
     alias cdcacti='cd ${DEV_WS}'\n\
-    alias sws='source ${DEV_WS}/devel/setup.bash'" >> ~/.bashrc
+    alias sws='source ${DEV_WS}/devel/setup.bash'\n\
+    "PS1='\e[92m\u\e[0m@\e[94m\h\e[0m:\e[35m\w\e[0m# '"" >> ~/.bashrc
 
 # copy the entrypoint into the image
 COPY ./entrypoint.sh /entrypoint.sh
