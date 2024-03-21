@@ -2,6 +2,9 @@ cacti-start(){
     #add xhost permissions for docker to use display
     xhost +local:docker
     echo "added docker xhost permissions"
+    export UID_GID=$(id -u):$(id -g)
+    export UNAME=$(whoami)
+    echo "gathering host user info... $UNAME $UID_GID"
     docker compose -f $HRI_CACTI_GIT_DIR/Docker/docker-compose.yaml up -d
 }
 
@@ -17,7 +20,7 @@ cacti-rm(){
 
 cacti-shell() {
     # open a shell in the container
-    docker exec -ti hri_cacti_c bash -l
+    docker exec -ti -u $USER -w ~/ hri_cacti_c bash -l
 }
 
 cacti-build() {

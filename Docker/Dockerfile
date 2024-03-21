@@ -93,7 +93,8 @@ RUN source devel/setup.bash \
     std_msgs \
     geometry_msgs \
     sensor_msgs \
-    audio_common_msgs
+    audio_common_msgs \
+    tf2_msgs
 
 RUN source devel/setup.bash \
     && catkin build
@@ -108,7 +109,7 @@ RUN echo -e "source /opt/ros/${ROS_DISTRO}/setup.bash\n\
     alias inpypkg='pip install $WS_PY_PKG'\n\
     alias cdcacti='cd ${DEV_WS}'\n\
     alias sws='source ${DEV_WS}/devel/setup.bash'\n\
-    "PS1='\e[92m\u\e[0m@\e[94m\h\e[0m:\e[35m\w\e[0m# '"" >> ~/.bashrc
+    PS1='\e[1m\e[93m\u\e[97m@\e[93m\h:\e[35m\w\e[0m\e[97m#\e[0m '" >> ~/.bashrc
 
 # copy the entrypoint into the image
 COPY ./entrypoint.sh /entrypoint.sh
