@@ -15,6 +15,7 @@ RUN apt update && apt upgrade -y \
     nano \
     vim \
     tmux \
+    wget \
     x11-apps \
     python3-pip \
     python3-catkin-tools \
@@ -54,6 +55,24 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
 
 RUN rosdep update
 
+# Download CUDA Toolkit installer
+RUN wget https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda_11.0.3_450.51.06_linux.run
+
+# Install CUDA Toolkit
+RUN chmod +x cuda_11.0.3_450.51.06_linux.run && \
+    ./cuda_11.0.3_450.51.06_linux.run --silent --toolkit --override --toolkitpath=/usr/local/cuda-11.0
+
+# Set environment variables
+ENV PATH=/usr/local/cuda-11.0/bin:${PATH}
+ENV LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64:${LD_LIBRARY_PATH}
+
+# Clean up
+RUN rm cuda_11.0.3_450.51.06_linux.run && \
+    apt-get purge -y wget && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
+
 # install pip packages
 WORKDIR /usr/src/app
 COPY ./requirements.txt ./
@@ -61,7 +80,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # install torch specific packages
-RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+RUN pip3 install torch --index-url https://download.pytorch.org/whl/cu118
+RUN pip3 install torchvision --index-url https://download.pytorch.org/whl/cu118
+RUN pip3 install torchaudio --index-url https://download.pytorch.org/whl/cu118
 
 # Setup environment
 ENV BASE_WS=/deps/ws_base
