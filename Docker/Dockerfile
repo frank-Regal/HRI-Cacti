@@ -60,7 +60,7 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/11.0.3/local_install
 
 # Install CUDA Toolkit
 RUN chmod +x cuda_11.0.3_450.51.06_linux.run && \
-    ./cuda_11.0.3_450.51.06_linux.run --silent --toolkit --override --toolkitpath=/usr/local/cuda-11.0
+    ./cuda_11.0.3_450.51.06_linux.run --toolkit --override --toolkitpath=/usr/local/cuda-11.0
 
 # Set environment variables
 ENV PATH=/usr/local/cuda-11.0/bin:${PATH}
@@ -72,17 +72,14 @@ RUN rm cuda_11.0.3_450.51.06_linux.run && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
-
-# install pip packages
+# Install pip packages
 WORKDIR /usr/src/app
 COPY ./requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
-# install torch specific packages
-RUN pip3 install torch --index-url https://download.pytorch.org/whl/cu118
-RUN pip3 install torchvision --index-url https://download.pytorch.org/whl/cu118
-RUN pip3 install torchaudio --index-url https://download.pytorch.org/whl/cu118
+# Install torch packages
+RUN pip3 install torch==2.2.1+cu118 torchvision==0.17.1+cu118 torchaudio==2.2.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html
 
 # Setup environment
 ENV BASE_WS=/deps/ws_base

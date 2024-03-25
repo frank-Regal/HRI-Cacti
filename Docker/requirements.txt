@@ -1,6 +1,6 @@
+accelerate
 gdown==5.0.0
-git+https://github.com/luca-medeiros/lang-segment-anything.git@main
-huggingface-hub==0.16.4
+huggingface-hub==0.21.4
 ipykernel==6.29.0
 ipywidgets
 jupyter
@@ -15,4 +15,4 @@ pyyaml
 scipy==1.10.1
 sox==1.4.1
 supervision==0.18.0
-transformers==4.27.4
+transformers==4.39.1
