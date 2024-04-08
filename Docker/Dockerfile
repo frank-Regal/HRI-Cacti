@@ -60,7 +60,7 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/11.0.3/local_install
 
 # Install CUDA Toolkit
 RUN chmod +x cuda_11.0.3_450.51.06_linux.run && \
-    ./cuda_11.0.3_450.51.06_linux.run --toolkit --override --toolkitpath=/usr/local/cuda-11.0
+    ./cuda_11.0.3_450.51.06_linux.run --silent --toolkit --override --toolkitpath=/usr/local/cuda-11.0
 
 # Set environment variables
 ENV PATH=/usr/local/cuda-11.0/bin:${PATH}
