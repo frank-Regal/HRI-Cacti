@@ -1,5 +1,7 @@
 # HRI-Cacti :cactus:
-Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) project hub.
+Docker installation for Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) project.
+
+**Main Project Repository: [hri_cacti_xr](https://github.com/frank-Regal/hri_cacti_xr)**
 
 ## Table of Contents
    * [1. Setup Docker Container](#1-setup-docker-container)
