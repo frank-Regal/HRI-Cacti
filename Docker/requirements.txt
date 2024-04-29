@@ -19,3 +19,4 @@ transformers==4.39.1
 ultralytics
 jupyter-notebook
 scikit-learn
+timm
