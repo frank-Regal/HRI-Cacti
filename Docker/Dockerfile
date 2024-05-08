@@ -22,6 +22,7 @@ RUN apt update && apt upgrade -y \
     python3-vcstool \
     python-is-python3 \
     ros-${ROS_DISTRO}-cv-bridge \
+    ros-${ROS_DISTRO}-vision-opencv \
     libqt5websockets5-dev \
     libasound2-dev \
     libsndfile-dev \
