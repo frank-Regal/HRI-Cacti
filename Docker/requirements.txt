@@ -17,4 +17,6 @@ sox==1.4.1
 supervision==0.18.0
 transformers==4.39.1
 ultralytics
+jupyter-notebook
 scikit-learn
+timm
