@@ -7,7 +7,7 @@ ENV ROS_DISTRO noetic
 ENV PROJ_HUB project
 
 # install some useful packages and upgrade existing ones
-RUN apt update && apt upgrade -y \
+RUN apt-get update && apt-get upgrade -y \
     && apt install -y \
     apt-utils \
     git \
@@ -30,7 +30,7 @@ RUN apt update && apt upgrade -y \
     qt5-default
 
 # install gstreamer utils required for audio_common
-RUN apt update && apt upgrade -y \
+RUN apt-get update && apt-get upgrade -y \
     && apt install -y \
     libgstreamer1.0-dev \
     libgstreamer-plugins-base1.0-dev \
