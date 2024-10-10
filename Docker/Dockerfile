@@ -27,7 +27,10 @@ RUN apt-get update && apt-get upgrade -y \
     libasound2-dev \
     libsndfile-dev \
     pkg-config \
-    qt5-default
+    qt5-default \
+    gcc \
+    cmake \
+    qt5-qmake
 
 # install gstreamer utils required for audio_common
 RUN apt-get update && apt-get upgrade -y \
@@ -117,6 +120,26 @@ RUN source devel/setup.bash \
 
 RUN source devel/setup.bash \
     && catkin build
+
+# Install robofleet server
+WORKDIR /deps
+RUN git clone https://github.com/UTNuclearRobotics/robofleet.git
+WORKDIR /deps/robofleet
+RUN git submodule init
+RUN git submodule update
+
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+RUN apt-get install -y nodejs
+     
+# Yarn (do this from robofleet_server directory)
+RUN apt remove cmdtest -y
+RUN apt remove yarn -y
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update
+RUN apt-get install yarn -y
+RUN yarn install -y
+
 
 WORKDIR /${PROJ_HUB}
 
