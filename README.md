@@ -18,7 +18,7 @@ Docker-based project workspace setup for the Human Robot Interaction (HRI) Comma
     
       ```shell
       curl -s https://packagecloud.io/install/repositories/dirk-thomas/vcstool/script.deb.sh | sudo bash
-      sudo apt-get updat
+      sudo apt-get update
       sudo apt install python3-vcstool
       ```
       </details>
