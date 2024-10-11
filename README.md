@@ -80,15 +80,19 @@ Docker-based project workspace setup for the Human Robot Interaction (HRI) Comma
          cd hri_cacti_xr && \
          vcs import < .repos
        ```
-  3. Open Docker shell
+  3. Start Docker Container
+       ```shell
+       cacti-start
+       ```
+  4. Open Docker shell
        ```shell
        cacti-shell
        ```
-  4. `🐋 From Docker Shell` Build custom python package and catkin workspace
+  5. `🐋 From Docker Shell` Build custom python package and catkin workspace
        ```shell
        cd /project/ws_dev/ && catkin build
        ```
-  5. `🐋 From Docker Shell` Source catkin workspace
+  6. `🐋 From Docker Shell` Source catkin workspace
        ```shell
        sws #preconfigured alias
        ```
