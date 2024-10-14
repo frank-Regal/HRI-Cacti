@@ -17,7 +17,7 @@ kill_tmux_session() {
 }
 
 # Kill the "robofleet" session
-kill_tmux_session robofleet
+kill_tmux_session robofleet-server
 
 # Kill the "ngrok" session
 kill_tmux_session ngrok

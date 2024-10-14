@@ -51,6 +51,11 @@ RUN apt-get update && apt-get upgrade -y \
     gstreamer1.0-qt5 \
     gstreamer1.0-pulseaudio
 
+# Install ngrok
+RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && \
+    echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | tee /etc/apt/sources.list.d/ngrok.list && \
+    apt update && apt install ngrok
+
 # install ros packages
 # see ../docs/installing_ros_packages.md for alternatives
 RUN DEBIAN_FRONTEND=noninteractive apt install -y \
@@ -127,19 +132,24 @@ RUN git clone https://github.com/UTNuclearRobotics/robofleet.git
 WORKDIR /deps/robofleet
 RUN git submodule init
 RUN git submodule update
+RUN cp /deps/robofleet/robofleet_server/src/config.example.ts /deps/robofleet/robofleet_server/src/config.ts
+RUN chown -R $UNAME:$UNAME /deps/robofleet
 
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
-     
-# Yarn (do this from robofleet_server directory)
-RUN apt remove cmdtest -y
-RUN apt remove yarn -y
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update
-RUN apt-get install yarn -y
-RUN yarn install -y
 
+# Install Yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install -y yarn
+
+# Set the working directory to the Robofleet server
+WORKDIR /deps/robofleet/robofleet_server
+
+# Install dependencies and build the project
+RUN yarn install
+RUN yarn build
 
 WORKDIR /${PROJ_HUB}
 
@@ -152,6 +162,24 @@ RUN echo -e "source /opt/ros/${ROS_DISTRO}/setup.bash\n\
     alias cdcacti='cd ${DEV_WS}'\n\
     alias sws='source ${DEV_WS}/devel/setup.bash'\n\
     PS1='\e[1m\e[93m\u\e[97m@\e[93m\h:\e[35m\w\e[0m\e[97m#\e[0m '" >> ~/.bashrc
+
+# Copy the start scripts to /usr/local/bin
+COPY scripts/start-robofleet-server.sh /usr/local/bin/start-robofleet-server
+COPY scripts/kill-robofleet-server.sh /usr/local/bin/kill-robofleet-server
+COPY scripts/start-robofleet-server-ngrok.sh /usr/local/bin/start-robofleet-server-ngrok
+COPY scripts/kill-robofleet-server-ngrok.sh /usr/local/bin/kill-robofleet-server-ngrok
+COPY scripts/start-robofleet-client.sh /usr/local/bin/start-robofleet-client
+COPY scripts/kill-robofleet-client.sh /usr/local/bin/kill-robofleet-client
+COPY scripts/create-augre-config.sh /usr/local/bin/create-augre-config
+
+# Make the scripts executable
+RUN chmod +x /usr/local/bin/start-robofleet-server
+RUN chmod +x /usr/local/bin/start-robofleet-server-ngrok
+RUN chmod +x /usr/local/bin/kill-robofleet-server
+RUN chmod +x /usr/local/bin/kill-robofleet-server-ngrok
+RUN chmod +x /usr/local/bin/start-robofleet-client
+RUN chmod +x /usr/local/bin/kill-robofleet-client
+RUN chmod +x /usr/local/bin/create-augre-config
 
 # copy the entrypoint into the image
 COPY ./entrypoint.sh /entrypoint.sh

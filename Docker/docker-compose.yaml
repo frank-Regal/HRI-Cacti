@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   hri_cacti_s:
     image: hri_cacti_i
@@ -11,7 +9,7 @@ services:
       dockerfile: Dockerfile
     # use the nvidia runtime for GPU access
     # uncomment to use nvidia drivers
-    # runtime: nvidia
+    runtime: nvidia
     deploy:
       resources:
         reservations:

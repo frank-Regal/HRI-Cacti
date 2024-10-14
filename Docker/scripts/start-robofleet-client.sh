@@ -18,10 +18,6 @@ create_or_attach_tmux() {
 }
 
 # Create or attach to "robofleet" tmux session and run yarn start
-create_or_attach_tmux roscore "roscore"
+create_or_attach_tmux robofleet-client "source /project/ws_dev/devel/setup.bash && rosrun robofleet_client client /project/ws_dev/src/hri_cacti_xr/robofleet/hl-ss-config.yaml"
 
-sleep 3
-
-source /mnt/c/Users/Frank/devel/ros_workspaces/client_ws/devel/setup.bash
-
-rosrun robofleet_client client /mnt/c/Users/Frank/devel/ros_workspaces/client_ws/src/robofleet_client/cfg/hololens-streams.yaml
+tmux attach-session -t robofleet-client

@@ -18,13 +18,15 @@ create_or_attach_tmux() {
 }
 
 # Create or attach to "robofleet" tmux session and run yarn start
-create_or_attach_tmux robofleet "cd /mnt/c/Users/Frank/devel/non_ros_projects/robofleet/robofleet_server && yarn start"
+create_or_attach_tmux robofleet-server "cd /deps/robofleet/robofleet_server && sudo yarn start"
 
 # Wait a moment to ensure yarn has started
 sleep 5
 
 # Create or attach to "ngrok" tmux session and run ngrok
-create_or_attach_tmux ngrok "ngrok tcp --remote-addr=1.tcp.ngrok.io:27907 8080 --authtoken 2ULTEe74gCXJa7GiRgXxr3FoeyE_3tSFdhStKLaKJK2gmTMEK"
+create_or_attach_tmux ngrok "ngrok tcp --remote-addr=$NGROK_REMOTE_ADDRESS 8080 --authtoken $NGROK_AUTH_KEY"
 
-# Attach to the "robofleet" session
-tmux attach-session -t robofleet
+# Print the IP address and start message
+echo "LocalRobofleet server started on IP: $ip_address"
+echo "Global Robofleet server started on IP: $NGROK_REMOTE_ADDRESS"
+echo "To view the status of the server, run: 'tmux attach-session -t robofleet-server'"
