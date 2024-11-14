@@ -17,9 +17,7 @@ Docker-based project workspace setup for the Human Robot Interaction (HRI) Comma
       <br>
     
       ```shell
-      curl -s https://packagecloud.io/install/repositories/dirk-thomas/vcstool/script.deb.sh | sudo bash
-      sudo apt-get update
-      sudo apt install python3-vcstool
+      pip install vcstool
       ```
       </details>
       <details>
@@ -57,12 +55,16 @@ Docker-based project workspace setup for the Human Robot Interaction (HRI) Comma
      ```shell
      source Docker/bash_utils && source ~/.bashrc
      ```
-  5. Build Docker Image
+  5. Clone base repos
+     ```shell
+     vcs import < .repos
+     ```
+  6. Build Docker Image
      >**Note**: `HRI-Cacti/setup.sh` script should have sourced the `HRI-Cacti/Docker/bash-utils` file to run the following shell cmds. If they were not correctly setup, see `HRI-Cacti/Docker/bash-utils` for a list of the cmds to run.
      ```shell
      cacti-build
      ```
-  6. Start Container
+  7. Start Container
      ```shell
      cacti-start
      ```
@@ -70,29 +72,26 @@ Docker-based project workspace setup for the Human Robot Interaction (HRI) Comma
 ## 2. Install Project Packages
 ### &diams; [hri_cacti_xr](https://github.com/frank-Regal/hri_cacti_xr) (main project repository) 
   >**Note**: Follow the steps below only if you setup the docker environment in [1. Setup Docker Container](#1-setup-docker-container). For non-docker, local machine, setup, see [this](https://github.com/frank-Regal/hri_cacti_xr) project repo for local install instructions.
-  1. From `HRI-Cacti/` directory, create the following workspace directories
+  1. Clone [hri_cacti_xr](https://github.com/frank-Regal/hri_cacti_xr) submodules.
        ```shell
-       mkdir -p project/ws_dev/src && cd project/ws_dev/src
+        cd project/ws_dev/src/hri_cacti_xr/
        ```
-  2. Clone [hri_cacti_xr](https://github.com/frank-Regal/hri_cacti_xr) repo and import submodules.
        ```shell
-       git clone git@github.com:frank-Regal/hri_cacti_xr.git && \
-         cd hri_cacti_xr && \
-         vcs import < .repos
+       vcs import < .repos
        ```
-  3. Start Docker Container
+  2. Start Docker Container
        ```shell
        cacti-start
        ```
-  4. Open Docker shell
+  3. Open Docker shell
        ```shell
        cacti-shell
        ```
-  5. `🐋 From Docker Shell` Build custom python package and catkin workspace
+  4. `🐋 From Docker Shell` Build custom python package and catkin workspace
        ```shell
        cd /project/ws_dev/ && catkin build
        ```
-  6. `🐋 From Docker Shell` Source catkin workspace
+  5. `🐋 From Docker Shell` Source catkin workspace
        ```shell
        sws #preconfigured alias
        ```
