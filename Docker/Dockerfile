@@ -100,6 +100,10 @@ RUN mkdir -p ${BASE_WS}/src
 # Change the working directory
 WORKDIR ${BASE_WS}/src
 
+RUN apt-get update && apt-get install -y \
+    python3-rospy \
+    python3-rosmsg
+
 # clone audio common
 RUN git clone https://github.com/ros-drivers/audio_common.git
 
