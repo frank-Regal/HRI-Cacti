@@ -1,0 +1,13 @@
+
+
+services:
+  hri_cacti_s:
+    extends:
+      file: Docker/docker-compose.yaml
+      service: hri_cacti_s
+
+  ros_bridge_s:
+    extends:
+      file: ros_bridge/docker-compose.yaml
+      service: ros_bridge_s
+      profile: bridge
