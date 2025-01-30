@@ -51,10 +51,6 @@ Docker-based project workspace setup for the Human Robot Interaction (HRI) Comma
        chmod +x setup.sh && \
        ./setup.sh
      ```
-  4. Source environment
-     ```shell
-     source Docker/bash_utils && source ~/.bashrc
-     ```
   5. Clone base repos
      ```shell
      vcs import < .repos
