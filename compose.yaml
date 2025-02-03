@@ -6,8 +6,8 @@ services:
       file: Docker/docker-compose.yaml
       service: hri_cacti_s
 
-  ros_bridge_s:
+  ros_bridge:
     extends:
-      file: ros_bridge/docker-compose.yaml
-      service: ros_bridge_s
+      file: Docker/ros_bridge/compose.yaml
+      service: ros_bridge
       profile: bridge
