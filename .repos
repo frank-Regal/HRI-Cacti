@@ -2,7 +2,15 @@ repositories:
   Docker/ros_bridge:
     type: git
     url: git@github.com:UTNuclearRobotics/ros_bridge.git
-    version: main
+    version: noetic-humble
+  Docker/ros_bridge/ros1_ws/src/tdm_msgs:
+    type: git
+    url: git@github.com:UTNuclearRobotics/tdm_msgs.git
+    version: noetic
+  Docker/ros_bridge/ros2_ws/src/tdm_msgs:
+    type: git
+    url: git@github.com:UTNuclearRobotics/tdm_msgs.git
+    version: humble
   project/ws_dev/src/hri_cacti_xr:
     type: git
     url: git@github.com:frank-Regal/hri_cacti_xr.git
@@ -15,3 +23,7 @@ repositories:
     type: git
     url: git@github.com:frank-Regal/hl2ss.git
     version: main
+  project/ws_dev/src/tdm_msgs:
+    type: git
+    url: git@github.com:UTNuclearRobotics/tdm_msgs.git
+    version: noetic
