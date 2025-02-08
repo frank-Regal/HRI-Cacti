@@ -108,7 +108,7 @@ RUN apt-get update && apt-get install -y \
 # clone audio common
 RUN git clone https://github.com/ros-drivers/audio_common.git
 
-# clone robofleet client 
+# clone robofleet client
 RUN git clone https://github.com/UTNuclearRobotics/robofleet_client.git -b noetic-devel
 WORKDIR ${BASE_WS}/src/robofleet_client
 RUN git submodule init
