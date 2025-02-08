@@ -51,10 +51,6 @@ Docker-based project workspace setup for the Human Robot Interaction (HRI) Comma
        chmod +x setup.sh && \
        ./setup.sh
      ```
-  4. Source environment
-     ```shell
-     source Docker/bash_utils && source ~/.bashrc
-     ```
   5. Clone base repos
      ```shell
      vcs import < .repos
@@ -62,11 +58,11 @@ Docker-based project workspace setup for the Human Robot Interaction (HRI) Comma
   6. Build Docker Image
      >**Note**: `HRI-Cacti/setup.sh` script should have sourced the `HRI-Cacti/Docker/bash-utils` file to run the following shell cmds. If they were not correctly setup, see `HRI-Cacti/Docker/bash-utils` for a list of the cmds to run.
      ```shell
-     cacti-build
+     make build
      ```
   7. Start Container
      ```shell
-     cacti-start
+     make start
      ```
 
 ## 2. Install Project Packages
