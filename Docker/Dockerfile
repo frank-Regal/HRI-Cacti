@@ -158,6 +158,8 @@ RUN yarn build
 
 WORKDIR /${PROJ_HUB}
 
+RUN pip install git+https://github.com/frank-Regal/hl2ss.git
+
 # setup .bashrc to correctly source workspace and setup user aliases
 SHELL ["/bin/bash", "-l", "-c"]
 ENV TERM=xterm-256color
