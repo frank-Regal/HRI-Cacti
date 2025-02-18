@@ -11,6 +11,14 @@ repositories:
     type: git
     url: git@github.com:UTNuclearRobotics/tdm_msgs.git
     version: humble
+  ros_bridge/ros1_ws/src/vision_msgs:
+    type: git
+    url: https://github.com/ros-perception/vision_msgs.git
+    version: noetic-devel
+  ros_bridge/ros2_ws/src/vision_msgs:
+    type: git
+    url: https://github.com/ros-perception/vision_msgs.git
+    version: ros2
   project/ws_dev/src/hri_cacti_xr:
     type: git
     url: git@github.com:UTNuclearRobotics/tdm_msgs.git

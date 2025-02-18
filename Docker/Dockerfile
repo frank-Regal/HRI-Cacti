@@ -31,6 +31,7 @@ RUN apt-get update && apt-get upgrade -y \
     qt5-default \
     gcc \
     cmake \
+    portaudio19-dev \
     qt5-qmake
 
 # install gstreamer utils required for audio_common
@@ -157,6 +158,8 @@ RUN yarn install
 RUN yarn build
 
 WORKDIR /${PROJ_HUB}
+
+RUN pip3 install git+https://github.com/frank-Regal/hl2ss.git
 
 # setup .bashrc to correctly source workspace and setup user aliases
 SHELL ["/bin/bash", "-l", "-c"]
