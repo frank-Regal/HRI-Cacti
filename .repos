@@ -6,31 +6,19 @@ repositories:
   ros_bridge/ros1_ws/src/tdm_msgs:
     type: git
     url: git@github.com:UTNuclearRobotics/tdm_msgs.git
-    version: noetic
+    version: noetic-lite
   ros_bridge/ros2_ws/src/tdm_msgs:
     type: git
     url: git@github.com:UTNuclearRobotics/tdm_msgs.git
-    version: humble
-  ros_bridge/ros1_ws/src/vision_msgs:
-    type: git
-    url: https://github.com/ros-perception/vision_msgs.git
-    version: noetic-devel
-  ros_bridge/ros2_ws/src/vision_msgs:
-    type: git
-    url: https://github.com/ros-perception/vision_msgs.git
-    version: ros2
+    version: humble-lite
   project/ws_dev/src/hri_cacti_xr:
     type: git
-    url: git@github.com:UTNuclearRobotics/tdm_msgs.git
-    version: noetic
+    url: git@github.com:frank-Regal/hri_cacti_xr.git
+    version: main
   project/ws_dev/src/hri_msgs:
     type: git
     url: git@github.com:ros4hri/hri_msgs.git
     version: master
-  project/ws_dev/src/hl2ss:
-    type: git
-    url: git@github.com:frank-Regal/hl2ss.git
-    version: main
   project/ws_dev/src/tdm_msgs:
     type: git
     url: git@github.com:UTNuclearRobotics/tdm_msgs.git

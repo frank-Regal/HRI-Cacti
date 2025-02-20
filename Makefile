@@ -10,12 +10,10 @@ help:
 	@echo "make log - show the container logs"
 
 start:
-	@xhost +local:docker
-	@echo "added docker xhost permissions"
-	@export UID_GID=$$(id -u):$$(id -g)
-	@export UNAME=$$(whoami)
-	@echo "gathering host user info... $$UNAME $$UID_GID"
-	@docker compose --profile bridge up -d
+	@xhost +local:docker; \
+	export UID_GID=$$(id -u):$$(id -g); \
+	export UNAME=$$(whoami); \
+	docker compose --profile bridge up
 
 stop:
 	@docker compose down
