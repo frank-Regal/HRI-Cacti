@@ -13,7 +13,7 @@ start:
 	@xhost +local:docker; \
 	export UID_GID=$$(id -u):$$(id -g); \
 	export UNAME=$$(whoami); \
-	docker compose -f ./docker-compose.yaml  up -d
+	docker compose -f ./docker-compose.yaml up -d
 
 stop:
 	@docker compose -f ./docker-compose.yaml down
