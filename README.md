@@ -1,3 +1,5 @@
+[![docs](https://readthedocs.org/projects/sphinx-rtd-theme/badge/?version=latest)](https://hri-cacti.readthedocs.io/en/latest/)
+
 # HRI-Cacti :cactus:
 Docker-based project workspace setup for the Human Robot Interaction (HRI) Command and Control Teammate Interface (CACTI) project.
 
