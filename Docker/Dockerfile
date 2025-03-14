@@ -161,6 +161,14 @@ WORKDIR /${PROJ_HUB}
 
 RUN pip3 install git+https://github.com/frank-Regal/hl2ss.git
 
+# install some useful packages and upgrade existing ones
+RUN apt-get update && apt-get upgrade -y \
+    && apt install -y \
+    ros-${ROS_DISTRO}-image-common \
+    ros-${ROS_DISTRO}-image-proc \
+    ros-${ROS_DISTRO}-apriltag-ros \
+    ros-${ROS_DISTRO}-apriltag
+
 # setup .bashrc to correctly source workspace and setup user aliases
 SHELL ["/bin/bash", "-l", "-c"]
 ENV TERM=xterm-256color
