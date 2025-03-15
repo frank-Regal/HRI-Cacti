@@ -167,7 +167,16 @@ RUN apt-get update && apt-get upgrade -y \
     ros-${ROS_DISTRO}-image-common \
     ros-${ROS_DISTRO}-image-proc \
     ros-${ROS_DISTRO}-apriltag-ros \
-    ros-${ROS_DISTRO}-apriltag
+    ros-${ROS_DISTRO}-apriltag \
+    autoconf automake \
+	python3-scipy python3-matplotlib \
+	ipython3 python3-wxgtk4.0 python3-tk python3-igraph python3-pyx \
+	libeigen3-dev libboost-all-dev libsuitesparse-dev \
+	doxygen \
+	libopencv-dev \
+	libpoco-dev libtbb-dev libblas-dev liblapack-dev libv4l-dev \
+	python3-catkin-tools python3-osrf-pycommon \
+    libgtk2.0-dev pkg-config
 
 # setup .bashrc to correctly source workspace and setup user aliases
 SHELL ["/bin/bash", "-l", "-c"]
