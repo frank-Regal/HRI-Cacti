@@ -162,8 +162,9 @@ WORKDIR /${PROJ_HUB}
 RUN pip3 install git+https://github.com/frank-Regal/hl2ss.git
 
 # install some useful packages and upgrade existing ones
-RUN apt-get update && apt-get upgrade -y \
-    && apt install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
     ros-${ROS_DISTRO}-image-common \
     ros-${ROS_DISTRO}-image-proc \
     ros-${ROS_DISTRO}-apriltag-ros \
