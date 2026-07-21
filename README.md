@@ -14,7 +14,7 @@ Docker-based project workspace setup for the Human Robot Interaction (HRI) Comma
 ## 1. Setup Docker Container
 > **Note**: This docker installation is the recommended way to run and contribute to this project. The installation instructions below will setup a Docker container on your machine mounted to the local `HRI-Cacti/project/` directory from this repo on your local machine after cloning this repo. The `/project/` directory in the Docker container after setup will be mounted (synced) to the `HRI-Cacti/project/` directory on your local machine. The intended work flow is to develop in the local `HRI-Cacti/project/` directory on your local machine and then build and run the packages located in `/project/` from a Docker container shell.
   1. Install prerequisites
-            <details>
+      <details>
       <summary><a href="https://github.com/dirk-thomas/vcstool">vcstool</a></summary>
       <br>
     
